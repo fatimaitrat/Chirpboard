@@ -1,0 +1,23 @@
+<div class ="max-w-md mx-auto mt-10">
+    <h1 class="text-3xl font-bold mb-6">Log In</h1>
+
+    <% if flash[:alert] %>
+        <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+            <%= flash[:alert]%>
+
+        </div>
+    <% end %>
+    <%= form_with url: login_path, local: true, class: "space-y-4" do |f| %>
+        <div>
+            <%= f.label :email,class: "block font-medium" %>
+            <%= f.email_field :email, class: "w-full border p-2 rounded"%>
+        </div>
+        <div>
+            <%= f.label :password,class: "block font-medium" %>
+            <%= f.password_field :password, class: "w-full border p-2 rounded"%>
+        </div>
+
+        <%= f.submit "Log In", class: "w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer"%>
+    <% end %>
+
+</div>

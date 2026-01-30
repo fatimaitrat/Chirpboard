@@ -19,14 +19,14 @@ class UsersController < ApplicationController
     @user = User.find_by!(username: params[:username])
   end
 
-  def edit 
+  def edit
     @user = current_user
   end
 
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to user_profile_path(@user.username),notice: "Profile Updated"
+      redirect_to user_profile_path(@user.username), notice: "Profile Updated"
     else
       render :edit, status: :unprocessable_entity
     end

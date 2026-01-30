@@ -19,7 +19,7 @@ class FollowsController < ApplicationController
 
   def require_login
     unless current_user
-      redirect_to login_path, alert: "You must be logged in to follow users." 
+      redirect_to login_path, alert: "You must be logged in to follow users."
     end
   end
 end

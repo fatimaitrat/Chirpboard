@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
   before_action :require_login
-  def new 
+  def new
     @post = Post.new
   end
-  def create 
+  def create
     @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to root_path, notice: "Posted!"
     else
       render :new, status: :unprocessable_entity
-      
+
     end
   end
 

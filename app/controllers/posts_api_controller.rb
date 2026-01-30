@@ -4,8 +4,8 @@ class PostsApiController < ApplicationController
   def index
     posts = Post.order(created_at: :desc).limit(20)
     render json: posts.as_json(
-      only: [:id, :body, :created_at],
-      include: { user: { only: [:username, :name] } }
+      only: [ :id, :body, :created_at ],
+      include: { user: { only: [ :username, :name ] } }
     )
   end
 end

@@ -1,6 +1,6 @@
 <div class="max-w-2xl mx-auto mt-10 text-center">
   <h1 class="text-4xl font-bold mb-6">Welcome to Chirpboard</h1>
-
+  
   <% if logged_in? %>
     <div class="mb-4">
       <% if current_user.avatar.attached? %>
@@ -28,7 +28,9 @@
         <% end %>
       </div>
     <% end %>
-    <%= button_to "Logout", logout_path, method: :delete, class: "bg-red-500 text-white px-4 py-2 rounded" %>
+    
+    
+  
   <% else %>
     <div class="space-x-4">
       <%= link_to "Log In", login_path, class: "text-blue-600 hover:underline" %>

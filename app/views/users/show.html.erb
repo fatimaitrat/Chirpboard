@@ -18,7 +18,11 @@
 
 
             <% if current_user == @user %>
-                <%= link_to "Edit Profile", edit_user_path(@user),class: "bg-gray-200 text-gray-800 px-4 py-2 rounded-full font-bold text-sm hover:bg-gray-300" %>
+                <div class="mt-4 space-x-2">
+                    <%= link_to "Edit Profile", edit_user_path(@user), class: "bg-gray-200 text-gray-800 px-4 py-2 rounded inline-block hover:bg-gray-300 transition" %>
+    
+                     <%= link_to "Logout", logout_path, data: { turbo_method: :delete }, class: "bg-red-500 text-white px-4 py-2 rounded inline-block hover:bg-red-600 transition" %>
+                </div>
             <% else %>
                 <% if current_user.following?(@user)%>
                     <%= button_to "Unfollow", follow_path(@user), method: :delete, class: "bg-white text-black border border-gray-300 px-4 py-2 rounded-full font-bold text-sm hover:bg-gray-100" %>

@@ -9,7 +9,14 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  get "api/posts", to: "posts_api#index"
+  #get "api/posts", to: "posts_api#index"
+  #API version 1 routes
+  namespace :api do
+    namespace :v1 do
+      #this creares /api/v1/posts
+      resources :posts, only: [:index]
+    end
+  end
   # Defines the root path route ("/")
   # root "posts#index"
   root "home#index"

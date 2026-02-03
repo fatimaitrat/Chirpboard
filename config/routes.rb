@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   #API version 1 routes
   namespace :api do
     namespace :v1 do
+      post "login", to: "session#create"
       #this creares /api/v1/posts
-      resources :posts, only: [:index]
+      resources :posts, only: [:index, :create, :destroy]
     end
   end
   # Defines the root path route ("/")

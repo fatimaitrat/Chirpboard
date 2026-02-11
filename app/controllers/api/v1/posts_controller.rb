@@ -18,7 +18,7 @@ module Api
         if @post.save 
           render :show, status: :created
         else
-          render json: { errors: @post.errors.full_message }, status: :unprocessable_entity
+          render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
         end
       end
 

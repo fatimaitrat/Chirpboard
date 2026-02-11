@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   #API version 1 routes
   namespace :api do
     namespace :v1 do
-      post "login", to: "session#create"
+      post "login", to: "sessions#create"
       #this creares /api/v1/posts
       resources :posts, only: [:index, :create, :destroy]
     end

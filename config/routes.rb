@@ -16,6 +16,13 @@ Rails.application.routes.draw do
       post "login", to: "sessions#create"
       #this creares /api/v1/posts
       resources :posts, only: [:index, :create, :destroy]
+      resources :users, only: [:create] do
+        member do
+          post :follow
+          delete :unfollow
+        end
+      end
+
     end
   end
   # Defines the root path route ("/")

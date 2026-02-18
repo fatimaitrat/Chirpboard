@@ -3,7 +3,11 @@
         <div class="flex item-start justify-between ">
             <div class=" flex items-center space-x-4">
                 <% if @user.avatar.attached? %>
-                    <%= image_tag @user.avatar.variant(:medium), class: "w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"%>
+                    <% if @user.avatar.content_type.to_s.include?("svg") %>
+                        <%= image_tag @user.avatar, class: "w-24 h-24 rounded-full object-cover border-4 border-white shadow-md" %>
+                    <% else %>
+                        <%= image_tag @user.avatar.variant(:medium), class: "w-24 h-24 rounded-full object-cover border-4 border-white shadow-md" %>
+                    <% end %>
                 <% else %>
                     <div class="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-gray-500 text-2xl font-bold">
                         <%= @user.username[0]%>

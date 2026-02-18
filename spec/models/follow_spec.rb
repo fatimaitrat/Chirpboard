@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Follow, type: :model do
-  let(:follower) { User.create!(username: "follower", email: "f@test.com", password: "password") }
-  let(:followed) { User.create!(username: "followed", email: "ed@test.com", password: "password") }
+  let(:follower) { create(:user) }
+  let(:followed) { create(:user) }
 
   describe 'validations' do
     context 'when creating a new relationship' do

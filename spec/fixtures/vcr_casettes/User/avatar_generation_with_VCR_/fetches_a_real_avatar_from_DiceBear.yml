@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.dicebear.com/7.x/initials/svg?seed=vcr_test
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 17 Feb 2026 08:43:29 GMT
+      Content-Type:
+      - image/svg+xml
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Server:
+      - BunnyCDN-PK1-1345
+      Cdn-Pullzone:
+      - '147563'
+      Cdn-Requestcountrycode:
+      - PK
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=31919000
+      X-Robots-Tag:
+      - noindex
+      Cdn-Proxyver:
+      - '1.43'
+      Cdn-Requestpullsuccess:
+      - 'True'
+      Cdn-Requestpullcode:
+      - '200'
+      Cdn-Edgestorageid:
+      - '1345'
+      Cdn-Status:
+      - '200'
+      Cdn-Requesttime:
+      - '0'
+      Cdn-Cachedat:
+      - 02/17/2026 08:43:29
+      Content-Disposition:
+      - inline; filename="avatar.svg"
+      Cdn-Requestid:
+      - d25889f018fc3386e7e6ebdb7b88c747
+      Cdn-Cache:
+      - MISS
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48bWV0YWRhdGEgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOmRjdGVybXM9Imh0dHA6Ly9wdXJsLm9yZy9kYy90ZXJtcy8iPjxyZGY6UkRGPjxyZGY6RGVzY3JpcHRpb24+PGRjOnRpdGxlPkluaXRpYWxzPC9kYzp0aXRsZT48ZGM6Y3JlYXRvcj5EaWNlQmVhcjwvZGM6Y3JlYXRvcj48ZGM6c291cmNlIHhzaTp0eXBlPSJkY3Rlcm1zOlVSSSI+aHR0cHM6Ly9naXRodWIuY29tL2RpY2ViZWFyL2RpY2ViZWFyPC9kYzpzb3VyY2U+PGRjdGVybXM6bGljZW5zZSB4c2k6dHlwZT0iZGN0ZXJtczpVUkkiPmh0dHBzOi8vY3JlYXRpdmVjb21tb25zLm9yZy9wdWJsaWNkb21haW4vemVyby8xLjAvPC9kY3Rlcm1zOmxpY2Vuc2U+PGRjOnJpZ2h0cz7igJ5Jbml0aWFsc+KAnSAoaHR0cHM6Ly9naXRodWIuY29tL2RpY2ViZWFyL2RpY2ViZWFyKSBieSDigJ5EaWNlQmVhcuKAnSwgbGljZW5zZWQgdW5kZXIg4oCeQ0MwIDEuMOKAnSAoaHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL3B1YmxpY2RvbWFpbi96ZXJvLzEuMC8pPC9kYzpyaWdodHM+PC9yZGY6RGVzY3JpcHRpb24+PC9yZGY6UkRGPjwvbWV0YWRhdGE+PG1hc2sgaWQ9InZpZXdib3hNYXNrIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjAiIHJ5PSIwIiB4PSIwIiB5PSIwIiBmaWxsPSIjZmZmIiAvPjwvbWFzaz48ZyBtYXNrPSJ1cmwoI3ZpZXdib3hNYXNrKSI+PHJlY3QgZmlsbD0iI2U1MzkzNSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHg9IjAiIHk9IjAiIC8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1MCIgZm9udC13ZWlnaHQ9IjQwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9IjE3LjgwMCI+VlQ8L3RleHQ+PC9nPjwvc3ZnPg==
+  recorded_at: Tue, 17 Feb 2026 08:43:29 GMT
+recorded_with: VCR 6.4.0

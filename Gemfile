@@ -70,8 +70,13 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+
+  gem "vcr"
+  gem "webmock"
 end
 
 #gem "pagy", "~> 9.3"
 
 gem "rspec-rails", "~> 8.0", groups: [:development, :test]
+
+gem "simplecov", "~> 0.22.0", group: :test, require: false

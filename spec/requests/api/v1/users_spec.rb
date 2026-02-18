@@ -4,7 +4,7 @@ RSpec.describe "Api::V1::Users", type: :request do
   describe "POST /api/v1/users" do
 
     context "with valid parameters" do
-      it "creates a new user and returns a token" do
+      it "creates a new user and returns a token", :vcr do
         user_params = {
           user: {
             username: "newbie",

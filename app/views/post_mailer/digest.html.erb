@@ -1,0 +1,15 @@
+<h1>Hello, <%= @user.username %></h1>
+
+<p>Here are the latest updates from Chirpboard:</p>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to truncate(post.body, length: 30), post_url(post) %>
+      
+      (<%= post.created_at.to_date %>)
+    </li>
+  <% end %>
+</ul>
+
+<p>Happy reading!</p>

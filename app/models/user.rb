@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  
   has_secure_password
   has_secure_token :auth_token
   has_one_attached :avatar do |attachable|
@@ -6,6 +7,14 @@ class User < ApplicationRecord
     attachable.variant :medium, resize_to_limit: [ 300, 300 ]
   end
 
+  before_create :set_default_avatar
+  def self.generate_unique_secure_token(length = 10)
+    loop do
+      token = SecureRandom.hex(10)
+
+      break token unless User.exists?(auth_token: token)
+    end
+  end
   has_many :posts, dependent: :destroy
 
   # People I follow
@@ -34,5 +43,19 @@ class User < ApplicationRecord
   end
   def unfollow(other_user)
     following.delete(other_user)
+  end
+  private
+  def set_default_avatar
+    return if avatar.attached?
+    slug = username.presence || "default"
+    url = "https://api.dicebear.com/7.x/initials/svg?seed=#{slug}"
+
+    downloaded_image = URI.open(url)
+
+    avatar.attach(
+      io: downloaded_image,
+      filename: "avatar_#{slug}.svg",
+      content_type: "image/svg+xml"
+    )
   end
 end

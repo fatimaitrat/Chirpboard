@@ -5,7 +5,11 @@
   <% if logged_in? %>
     <div class="mb-4">
       <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar.variant(:thumb), class: "w-20 h-20 rounded-full mx-auto object-cover border-2 border-blue-500" %>
+        <% if current_user.avatar.content_type.to_s.include?("svg") %>
+          <%= image_tag current_user.avatar, class: "w-20 h-20 rounded-full mx-auto object-cover border-2 border-blue-500" %>
+        <% else %>
+          <%= image_tag current_user.avatar.variant(:thumb), class: "w-20 h-20 rounded-full mx-auto object-cover border-2 border-blue-500" %>
+        <% end %>
       <% else %>
         <div class="w-20 h-20 rounded-full mx-auto bg-gray-300 flex items-center justify-corner text-gray-600">
           

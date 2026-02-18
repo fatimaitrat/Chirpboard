@@ -19,8 +19,8 @@ RSpec.describe User, type: :model do
 
     #Testing uniqueness - does it fail if ussername is taken
     it "is invalid with a duplicate username" do
-      User.create!(username:"original", email: "first@example.com", password: "password")
-
+      #User.create!(username:"original", email: "first@example.com", password: "password")
+      create(:user, username: "original")
       duplicate_user = User.new(username: "original", email: "second@example.com", password: "pass")
 
       expect(duplicate_user).to_not be_valid
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
     end
 
     it "is invalid with a duplicate email" do
-      User.create!(username: "user1", email: "test@example.com", password: "password")
+      create(:user, email: "test@example.com", password: "password")
       user2 = User.new(username: "user2", email: "test@example.com", password: "password")
       
       expect(user2).to_not be_valid
@@ -45,8 +45,8 @@ RSpec.describe User, type: :model do
   #The follow method
   describe '#follow' do
     #we need two users to test following 
-    let(:alice) { User.create!(username: "alice", email: "alice#example.com", password: "pass") }
-    let(:bob) { User.create!(username: "bob", email: "bob#example.com", password: "pass") } 
+    let(:alice) { create(:user, username: "alice") }
+    let(:bob) { create(:user, username: "bob") } 
 
     context "when trying to follow self" do
       it "does not allow following yourself" do
@@ -68,8 +68,8 @@ RSpec.describe User, type: :model do
   end
 
   describe '#unfollow' do
-    let(:alice) { User.create!(username: "alice", email: "alice#example.com", password: "pass") }
-    let(:bob) { User.create!(username: "bob", email: "bob#example.com", password: "pass") } 
+    let(:alice) { create(:user, username: "alice") }
+    let(:bob) { create(:user,username: "bob") } 
 
     context "when the user is following" do
       it "remove the user from the following list" do
@@ -83,20 +83,69 @@ RSpec.describe User, type: :model do
 
   describe 'association' do
     it "destroy dependent posrs when user is deleted" do
-      user = User.create!(username: "user", email: "email1@example.com", password:"pass")
+      user = create(:user)
 
       user.posts.create!(body: "Hello world")
 
       expect { user.destroy }.to change { Post.count }.by(-1)
     end
   end
+ 
+
 
   describe 'secure token' do
     it "generates an auth_token upon creation" do
-      user = User.create!(username: "token_user", email: "token@test.com", password: "password")
+      user = create(:user)
       expect(user.auth_token).to be_present
+    end
+  end
 
+  describe ".generate_unique_secure_token" do
+    it "regenerates the secure token if the first one is taken" do
+      
+      #existing_user = instance_double(User)
 
+      allow(SecureRandom).to receive(:hex).and_return("taken_token", "fresh_token")
+
+      allow(User).to receive(:exists?).with(auth_token: "taken_token").and_return(true)
+
+      allow(User).to receive(:exists?).with(auth_token: "fresh_token").and_return(false)
+
+      token = User.generate_unique_secure_token
+      expect(token).to eq("fresh_token")
+    end
+
+  end
+
+  describe "avatar generation" do
+    it "fetches and attracts a default avatar from DiceBear upon creation" do
+      fake_image_data = StringIO.new("<svg>...<svg>")
+
+      allow(URI).to receive(:open).and_return(fake_image_data)
+
+      user = User.create!(username: "spy_test", email: "spy@test.com", password: "password")
+
+      expect(URI).to have_received(:open).with(
+        "https://api.dicebear.com/7.x/initials/svg?seed=spy_test"
+      )
+
+      expect(user.avatar).to be_attached
+    end
+  end
+  describe "manual avatar upload" do
+    it "allows a user to attach a custom photo" do
+      user = create(:user)
+
+      file_path = Rails.root.join("spec", "fixtures", "files", "default_avatar.svg")
+
+      user.avatar.attach(
+        io:File.open(file_path),
+        filename: "custom_avatar.svg",
+        content_type: "img/svg+xml"
+      )
+
+      expect(user.avatar).to be_attached
+      expect(user.avatar.filename.to_s).to eq("custom_avatar.svg")
     end
   end
 end

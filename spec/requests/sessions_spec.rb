@@ -27,4 +27,15 @@ RSpec.describe "Api::V1::Sessions", type: :request do
       end
     end
   end
+  describe "DELETE /logout" do
+    it "logs out the user" do
+      # 1. Log in first
+      post login_path, params: { email: user.email, password: "password" }
+      
+      # 2. Log out
+      delete logout_path
+      expect(session[:user_id]).to be_nil
+      expect(response).to redirect_to(root_path)
+    end
+  end
 end

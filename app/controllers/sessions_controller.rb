@@ -5,10 +5,20 @@ class SessionsController < ApplicationController
   end
 
   def create
+    puts "--- DEBUGGING LOGIN ---"
+    puts "Email Params: #{params[:email]}"
+    
     user = User.find_by(email: params[:email])
-    if user&.authenticate(params[:password])
+    puts "User Found: #{user.inspect}"
+    
+    if user
+      puts "Password match?: #{user.authenticate(params[:password])}"
+    end
+    puts "-----------------------"
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to root_path, notice: "Logged in successfully!"
+      redirect_to root_path, notice: "Logged in successfully!", status: :see_other
     else
       flash.now[:alert] = "Invalid email or password"
       render :new, status: :unprocessable_entity

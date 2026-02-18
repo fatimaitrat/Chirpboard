@@ -20,7 +20,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to root_path, alert: "You are not authorized to edit this profile."
+    end
   end
 
   def update
